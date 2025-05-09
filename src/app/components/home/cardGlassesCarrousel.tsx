@@ -2,16 +2,15 @@
 
 import Image from "next/image"
 import { motion } from "framer-motion"
-import { ShoppingCart, Star } from "lucide-react"
 
 interface CardGlassesCarrouselProps {
   imageSrc: string
   imageAlt: string
   name: string
   price: number
-  rating: number // 0-5
-  reviews: number
-  onAddToCart: () => void
+  rating?: number // 0-5
+  reviews?: number
+  onAddToCart?: () => void
 }
 
 export default function CardGlassesCarrousel({
@@ -19,9 +18,6 @@ export default function CardGlassesCarrousel({
   imageAlt,
   name,
   price,
-  rating,
-  reviews,
-  onAddToCart,
 }: CardGlassesCarrouselProps) {
   // Format price to USD
   const formattedPrice = new Intl.NumberFormat("en-US", {
@@ -30,21 +26,6 @@ export default function CardGlassesCarrousel({
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   }).format(price)
-
-  // Generate stars based on rating
-  const renderStars = () => {
-    return Array(5)
-      .fill(0)
-      .map((_, i) => (
-        <Star
-          key={i}
-          className={`w-4 h-4 ${
-            i < Math.floor(rating) ? "fill-amber-400 text-amber-400" : "text-gray-300 dark:text-gray-600"
-          }`}
-          data-testid={`star-${i}`}
-        />
-      ))
-  }
 
   return (
     <motion.div

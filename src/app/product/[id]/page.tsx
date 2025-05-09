@@ -1,6 +1,4 @@
-'use client'
 import { notFound } from "next/navigation";
-
 import { Suspense } from "react";
 import ProductGallery from "@/app/components/product/product-gallery";
 import AddToCartButton from "@/app/components/product/add-to-cart-button";
@@ -9,7 +7,7 @@ import ProductReviews from "@/app/components/product/product-reviews";
 import { getProductById, getRelatedProducts } from '@/lib/products'
 import { Clock, Shield, Truck } from 'lucide-react';
 
-// eslint-disable-next-line @next/next/no-async-client-component
+// Definimos la página como un componente de servidor (por defecto en Next.js)
 export default async function ProductPage({
   params,
 }: {
@@ -22,7 +20,8 @@ export default async function ProductPage({
     notFound();
   }
 
-  const relatedProducts = await getRelatedProducts(product.category);
+  // Como getRelatedProducts ya no recibe parámetros, lo llamamos sin argumentos
+  const relatedProducts = await getRelatedProducts();
 
   return (
     <div className="bg-black text-white min-h-screen">
@@ -135,7 +134,7 @@ export default async function ProductPage({
 
             {/* Botones de acción */}
             <div className="mt-auto space-y-4">
-              <AddToCartButton product={product} />
+              <AddToCartButton />
               
               <button className="w-full bg-transparent border border-zinc-700 text-white py-3 px-4 rounded-md hover:bg-zinc-900 transition duration-200 flex items-center justify-center">
                 <svg
@@ -171,7 +170,7 @@ export default async function ProductPage({
 
         {/* Reseñas */}
         <div className="my-16">
-          <ProductReviews productId={params.id} />
+          <ProductReviews />
         </div>
 
         {/* Productos relacionados */}

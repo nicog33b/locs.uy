@@ -50,7 +50,7 @@ export async function getProductById(id: string) {
     };
 }
 
-export async function getRelatedProducts(category: string) {
+export async function getRelatedProducts() {
     // En un caso real, esto sería una llamada a una API o base de datos
     await new Promise((resolve) => setTimeout(resolve, 300)); // Simular latencia
 

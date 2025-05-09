@@ -4,14 +4,14 @@ import { useState } from "react"
 import { ShoppingCart, Minus, Plus, Check } from "lucide-react"
 
 interface AddToCartButtonProps {
-  product: {
+  product?: {
     id: string
     name: string
     price: number
   }
 }
 
-export default function AddToCartButton({ product }: AddToCartButtonProps) {
+export default function AddToCartButton({}: AddToCartButtonProps) {
   const [quantity, setQuantity] = useState(1)
   const [isAdding, setIsAdding] = useState(false)
   const [isAdded, setIsAdded] = useState(false)

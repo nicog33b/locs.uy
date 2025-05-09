@@ -236,7 +236,7 @@ const DesktopMenu = ({
 const SearchBar = ({ isSearchOpen, setIsSearchOpen, searchRef }: { 
   isSearchOpen: boolean, 
   setIsSearchOpen: (value: boolean) => void,
-  searchRef: React.MutableRefObject<HTMLDivElement | null>
+  searchRef: React.RefObject<HTMLDivElement>
 }) => {
   return (
     <div className="relative" ref={searchRef}>
@@ -287,7 +287,7 @@ const SearchBar = ({ isSearchOpen, setIsSearchOpen, searchRef }: {
 const UserMenu = ({ userDropdownOpen, setUserDropdownOpen, userDropdownRef }: {
   userDropdownOpen: boolean,
   setUserDropdownOpen: (value: boolean) => void,
-  userDropdownRef: React.MutableRefObject<HTMLDivElement | null>
+  userDropdownRef: React.RefObject<HTMLDivElement>
 }) => {
   return (
     <div className="relative" ref={userDropdownRef}>
@@ -341,7 +341,7 @@ const UserMenu = ({ userDropdownOpen, setUserDropdownOpen, userDropdownRef }: {
 const CartDrawer = ({ cartOpen, setCartOpen, cartRef, cartItems, cartTotal, itemCount }: {
   cartOpen: boolean,
   setCartOpen: (value: boolean) => void,
-  cartRef: React.MutableRefObject<HTMLDivElement | null>,
+  cartRef: React.RefObject<HTMLDivElement>,
   cartItems: CartItem[],
   cartTotal: number,
   itemCount: number
@@ -723,9 +723,11 @@ export default function Navbar() {
   return (
     <header
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        // Siempre mostrar al hacer scroll hacia arriba, ocultar solo al hacer scroll hacia abajo después del banner
-        scrollDirection === "down" && isPastBanner
-          ? "-translate-y-full" 
+        // Solo aplicar la transformación si ha pasado el banner
+        isPastBanner 
+          ? scrollDirection === "down" 
+            ? "-translate-y-full" 
+            : "translate-y-0"
           : "translate-y-0"
       } ${
         isScrolled || isPastBanner

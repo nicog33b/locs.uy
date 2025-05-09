@@ -4,10 +4,10 @@ import { useState } from "react"
 import { Star } from "lucide-react"
 
 interface ProductReviewsProps {
-  productId: string
+  productId?: string
 }
 
-export default function ProductReviews({ productId }: ProductReviewsProps) {
+export default function ProductReviews({}: ProductReviewsProps) {
   const [activeTab, setActiveTab] = useState("reviews")
 
   // Datos de ejemplo para las reseñas
