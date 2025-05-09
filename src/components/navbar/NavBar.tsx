@@ -155,8 +155,10 @@ const DesktopMenu = ({
           <li key={link.href} className="relative group">
             {link.hasSubmenu ? (
               <div 
-                ref={(element) => {
-                  dropdownRefs.current[link.href] = element;
+                ref={(el) => {
+                  if (dropdownRefs.current) {
+                    dropdownRefs.current[link.href] = el;
+                  }
                 }}
               >
                 <button

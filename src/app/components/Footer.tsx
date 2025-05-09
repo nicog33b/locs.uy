@@ -184,14 +184,10 @@ export default function Footer() {
                       height: '55px'
                     }}
                   >
-                    {typeof method.Icon === 'function' && method.name === 'Abitab' ? (
-                      <method.Icon />
-                    ) : (
-                      <method.Icon 
-                        color={method.iconColor}
-                        size={36}
-                      />
-                    )}
+                    <method.Icon 
+                      className="h-9 w-9 transition-all duration-300" 
+                      style={{ color: method.iconColor }}
+                    />
                   </div>
                   <div 
                     className="absolute opacity-0 group-hover:opacity-100 -top-8 left-1/2 -translate-x-1/2 bg-gray-900 text-white text-xs rounded-full py-1 px-3 transition-all duration-200 pointer-events-none"
