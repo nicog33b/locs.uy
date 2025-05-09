@@ -759,7 +759,7 @@ export default function Navbar() {
             <SearchBar 
               isSearchOpen={isSearchOpen} 
               setIsSearchOpen={setIsSearchOpen}
-              searchRef={searchRef}
+              searchRef={searchRef as React.RefObject<HTMLDivElement>}
             />
 
             {/* Favoritos */}
@@ -781,14 +781,16 @@ export default function Navbar() {
             <UserMenu 
               userDropdownOpen={userDropdownOpen}
               setUserDropdownOpen={setUserDropdownOpen}
-              userDropdownRef={userDropdownRef}
+
+              //solucionar typeerror
+              userDropdownRef={userDropdownRef as React.RefObject<HTMLDivElement>}
             />
 
             {/* Mini carrito */}
             <CartDrawer 
               cartOpen={cartOpen}
               setCartOpen={setCartOpen}
-              cartRef={cartRef}
+              cartRef={cartRef as React.RefObject<HTMLDivElement>}
               cartItems={cartItems}
               cartTotal={cartTotal}
               itemCount={itemCount}

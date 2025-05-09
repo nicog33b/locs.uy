@@ -5,6 +5,19 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { ShoppingCart, Heart, Eye } from 'lucide-react';
 
+// Definición de la interfaz para las props
+interface SunglassesGridProps {
+  sunglasses: {
+    id: number;
+    name: string;
+    price: number;
+    image: string;
+    originalPrice?: number;
+    isNew?: boolean;
+    tags?: string[];
+  }[];
+}
+
 // Datos de ejemplo para las gafas de sol
 const sunglassesData = [
   {
@@ -72,7 +85,10 @@ const sunglassesData = [
   },
 ];
 
-const SunglassesGrid: React.FC = () => {
+const SunglassesGrid: React.FC<SunglassesGridProps> = ({ sunglasses }) => {
+  // Utilizamos los datos pasados como props, o los datos por defecto si no se proporcionan
+  const displaySunglasses = sunglasses || sunglassesData;
+
   return (
     <section className="py-16 bg-gradient-to-b from-gray-50 to-white">
       <div className="max-w-7xl mx-auto px-4">
@@ -85,7 +101,7 @@ const SunglassesGrid: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-          {sunglassesData.map((glasses) => (
+          {displaySunglasses.map((glasses) => (
             <motion.div
               key={glasses.id}
               initial={{ opacity: 0, y: 20 }}
@@ -147,16 +163,18 @@ const SunglassesGrid: React.FC = () => {
                 
                 {/* Información del producto */}
                 <div className="p-5">
-                  <div className="flex flex-wrap gap-2 mb-3">
-                    {glasses.tags.map((tag, idx) => (
-                      <span 
-                        key={idx} 
-                        className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+                  {glasses.tags && (
+                    <div className="flex flex-wrap gap-2 mb-3">
+                      {glasses.tags.map((tag, idx) => (
+                        <span 
+                          key={idx} 
+                          className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                   
                   <h3 className="font-semibold text-lg mb-2 line-clamp-2 h-14">{glasses.name}</h3>
                   

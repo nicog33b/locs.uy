@@ -193,7 +193,7 @@ export default function Navbar() {
               {navLinks.map((link) => (
                 <li key={link.href} className="relative group">
                   {link.hasSubmenu ? (
-                    <div ref={(el) => (dropdownRefs.current[link.href] = el)}>
+                    <div ref={(el) => { dropdownRefs.current[link.href] = el; }}>
                       <button
                         onClick={() => toggleDropdown(link.href)}
                         className="flex items-center gap-1 px-2 py-1 text-gray-800 hover:text-blue-600 transition-colors focus:outline-none"

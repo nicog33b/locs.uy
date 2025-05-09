@@ -4,7 +4,7 @@ import { useState } from "react"
 import { ShoppingCart, Minus, Plus, Check } from "lucide-react"
 
 interface AddToCartButtonProps {
-  product?: {
+  product: {
     id: string
     name: string
     price: number
